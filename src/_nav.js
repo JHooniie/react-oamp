@@ -48,7 +48,7 @@ const _nav = [
   },
   {
     component: CNavGroup,
-    name: 'Base',
+    name: '으아아',
     to: '/base',
     icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
     items: [
@@ -126,7 +126,7 @@ const _nav = [
   },
   {
     component: CNavGroup,
-    name: 'Buttons',
+    name: '드디어',
     to: '/buttons',
     icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
     items: [
@@ -149,7 +149,7 @@ const _nav = [
   },
   {
     component: CNavGroup,
-    name: 'Forms',
+    name: '해났다아',
     icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
     items: [
       {
