@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import React from 'react'
 import {
   CCard,
@@ -12,8 +13,55 @@ import {
   CTableHead,
   CTableHeaderCell,
   CTableRow,
+  CDropdown,
+  CDropdownToggle,
+  CDropdownMenu,
+  CDropdownItem,
+  CButton,
+  CButtonGroup,
+  CInputGroup,
+  CFormInput,
+  CDropdownDivider,
+  CBadge,
 } from '@coreui/react'
-import { DocsExample } from 'src/components'
+import { CNav, CNavItem, CNavLink, CTabContent, CTabPane, CFormCheck } from '@coreui/react'
+// import { DocsExample } from 'src/components'
+import CIcon from '@coreui/icons-react'
+import { cilCode, cilMediaPlay } from '@coreui/icons'
+
+const DocsExample1 = (props) => {
+  const { children, href } = props
+
+  const _href = `https://coreui.io/react/docs/${href}`
+
+  return (
+    <div className="example">
+      <CNav variant="tabs">
+        <CNavItem>
+          <CNavLink href="#" active>
+            {/* <CIcon icon={cilMediaPlay} className="me-2" /> */}
+            프로세스
+          </CNavLink>
+        </CNavItem>
+        <CNavItem>
+          <CNavLink href={_href} target="_blank">
+            {/* <CIcon icon={cilCode} className="me-2" /> */}
+            서비스
+          </CNavLink>
+        </CNavItem>
+      </CNav>
+      <CTabContent className="rounded-bottom">
+        <CTabPane className="p-3 preview" visible>
+          {children}
+        </CTabPane>
+      </CTabContent>
+    </div>
+  )
+}
+DocsExample1.propTypes = {
+  children: PropTypes.node,
+  href: PropTypes.string,
+}
 
 const Tables = () => {
   return (
@@ -21,961 +69,276 @@ const Tables = () => {
       <CCol xs={12}>
         <CCard className="mb-4">
           <CCardHeader>
-            <strong>React Table</strong> <small>Basic example</small>
+            <strong>프로세스 / 서비스 제어</strong> <small></small>
           </CCardHeader>
           <CCardBody>
-            <p className="text-medium-emphasis small">
-              Using the most basic table CoreUI, here&#39;s how <code>&lt;CTable&gt;</code>-based
-              tables look in CoreUI.
-            </p>
-            <DocsExample href="components/table">
-              <CTable>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Table</strong> <small>Variants</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Use contextual classes to color tables, table rows or individual cells.
-            </p>
-            <DocsExample href="components/table#variants">
-              <CTable>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">Default</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow color="primary">
-                    <CTableHeaderCell scope="row">Primary</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow color="secondary">
-                    <CTableHeaderCell scope="row">Secondary</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow color="success">
-                    <CTableHeaderCell scope="row">Success</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow color="danger">
-                    <CTableHeaderCell scope="row">Danger</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow color="warning">
-                    <CTableHeaderCell scope="row">Warning</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow color="info">
-                    <CTableHeaderCell scope="row">Info</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow color="light">
-                    <CTableHeaderCell scope="row">Light</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow color="dark">
-                    <CTableHeaderCell scope="row">Dark</CTableHeaderCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                    <CTableDataCell>Cell</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Table</strong> <small>Striped rows</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Use <code>striped</code> property to add zebra-striping to any table row within the{' '}
-              <code>&lt;CTableBody&gt;</code>.
-            </p>
-            <DocsExample href="components/table#striped-rows">
-              <CTable striped>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-            <p className="text-medium-emphasis small">
-              These classes can also be added to table variants:
-            </p>
-            <DocsExample href="components/table#striped-rows">
-              <CTable color="dark" striped>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-            <DocsExample href="components/table#striped-rows">
-              <CTable color="success" striped>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Table</strong> <small>Hoverable rows</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Use <code>hover</code> property to enable a hover state on table rows within a{' '}
-              <code>&lt;CTableBody&gt;</code>.
-            </p>
-            <DocsExample href="components/table#hoverable-rows">
-              <CTable hover>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-            <DocsExample href="components/table#hoverable-rows">
-              <CTable color="dark" hover>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-            <DocsExample href="components/table#hoverable-rows">
-              <CTable striped hover>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Table</strong> <small>Active tables</small>
-          </CCardHeader>
-          <CCardBody>
-            <DocsExample href="components/table#active-tables">
-              <CTable>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow active>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2" active>
-                      Larry the Bird
-                    </CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-            <DocsExample href="components/table#active-tables">
-              <CTable color="dark">
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow active>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2" active>
-                      Larry the Bird
-                    </CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Table</strong> <small>Bordered tables</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Add <code>bordered</code> property for borders on all sides of the table and cells.
-            </p>
-            <DocsExample href="components/table#bordered-tables">
-              <CTable bordered>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-            <p className="text-medium-emphasis small">
-              <a href="https://coreui.io/docs/4.0/utilities/borders#border-color">
-                Border color utilities
-              </a>{' '}
-              can be added to change colors:
-            </p>
-            <DocsExample href="components/table#bordered-tables">
-              <CTable bordered borderColor="primary">
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Table</strong> <small>Tables without borders</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Add <code>borderless</code> property for a table without borders.
-            </p>
-            <DocsExample href="components/table#tables-without-borders">
-              <CTable borderless>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-            <DocsExample href="components/table#tables-without-borders">
-              <CTable color="dark" borderless>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Table</strong> <small>Small tables</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Add <code>small</code> property to make any <code>&lt;CTable&gt;</code> more compact
-              by cutting all cell <code>padding</code> in half.
-            </p>
-            <DocsExample href="components/table#small-tables">
-              <CTable small>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Table</strong> <small>Vertical alignment</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Table cells of <code>&lt;CTableHead&gt;</code> are always vertical aligned to the
-              bottom. Table cells in <code>&lt;CTableBody&gt;</code> inherit their alignment from{' '}
-              <code>&lt;CTable&gt;</code> and are aligned to the the top by default. Use the align
-              property to re-align where needed.
-            </p>
-            <DocsExample href="components/table#vertical-alignment">
-              <CTable align="middle" responsive>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col" className="w-25">
-                      Heading 1
-                    </CTableHeaderCell>
-                    <CTableHeaderCell scope="col" className="w-25">
-                      Heading 2
-                    </CTableHeaderCell>
-                    <CTableHeaderCell scope="col" className="w-25">
-                      Heading 3
-                    </CTableHeaderCell>
-                    <CTableHeaderCell scope="col" className="w-25">
-                      Heading 4
-                    </CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableDataCell>
-                      This cell inherits <code>vertical-align: middle;</code> from the table
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      This cell inherits <code>vertical-align: middle;</code> from the table
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      This cell inherits <code>vertical-align: middle;</code> from the table
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      This here is some placeholder text, intended to take up quite a bit of
-                      vertical space, to demonsCTableRowate how the vertical alignment works in the
-                      preceding cells.
-                    </CTableDataCell>
-                  </CTableRow>
-                  <CTableRow align="bottom">
-                    <CTableDataCell>
-                      This cell inherits <code>vertical-align: bottom;</code> from the table row
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      This cell inherits <code>vertical-align: bottom;</code> from the table row
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      This cell inherits <code>vertical-align: bottom;</code> from the table row
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      This here is some placeholder text, intended to take up quite a bit of
-                      vertical space, to demonsCTableRowate how the vertical alignment works in the
-                      preceding cells.
-                    </CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableDataCell>
-                      This cell inherits <code>vertical-align: middle;</code> from the table
-                    </CTableDataCell>
-                    <CTableDataCell>
-                      This cell inherits <code>vertical-align: middle;</code> from the table
-                    </CTableDataCell>
-                    <CTableDataCell align="top">This cell is aligned to the top.</CTableDataCell>
-                    <CTableDataCell>
-                      This here is some placeholder text, intended to take up quite a bit of
-                      vertical space, to demonsCTableRowate how the vertical alignment works in the
-                      preceding cells.
-                    </CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Table</strong> <small>Nesting</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              Border styles, active styles, and table variants are not inherited by nested tables.
-            </p>
-            <DocsExample href="components/table#nesting">
-              <CTable striped>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell colSpan="4">
-                      <CTable>
-                        <CTableHead>
-                          <CTableRow>
-                            <CTableHeaderCell scope="col">Header</CTableHeaderCell>
-                            <CTableHeaderCell scope="col">Header</CTableHeaderCell>
-                            <CTableHeaderCell scope="col">Header</CTableHeaderCell>
-                          </CTableRow>
-                        </CTableHead>
-                        <CTableBody>
-                          <CTableRow>
-                            <CTableHeaderCell scope="row">A</CTableHeaderCell>
-                            <CTableDataCell>First</CTableDataCell>
-                            <CTableDataCell>Last</CTableDataCell>
-                          </CTableRow>
-                          <CTableRow>
-                            <CTableHeaderCell scope="row">B</CTableHeaderCell>
-                            <CTableDataCell>First</CTableDataCell>
-                            <CTableDataCell>Last</CTableDataCell>
-                          </CTableRow>
-                          <CTableRow>
-                            <CTableHeaderCell scope="row">C</CTableHeaderCell>
-                            <CTableDataCell>First</CTableDataCell>
-                            <CTableDataCell>Last</CTableDataCell>
-                          </CTableRow>
-                        </CTableBody>
-                      </CTable>
-                    </CTableHeaderCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Table</strong> <small>Table head</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
+            {/* <p className="text-medium-emphasis small">
               Similar to tables and dark tables, use the modifier prop{' '}
               <code>color=&#34;light&#34;</code> or <code>color=&#34;dark&#34;</code> to make{' '}
               <code>&lt;CTableHead&gt;</code>s appear light or dark gray.
-            </p>
-            <DocsExample href="components/table#table-head">
-              <CTable>
-                <CTableHead color="light">
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell>Larry</CTableDataCell>
-                    <CTableDataCell>the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-            <DocsExample href="components/table#table-head">
+            </p> */}
+            <CCard>
+              <CCardBody>
+                <CRow className="g-3">
+                  <CCol sm={1}>
+                    <CFormCheck id="flexCheckChecked" label="전체" defaultChecked />
+                  </CCol>
+                  <CCol sm={10}>
+                    <CInputGroup>
+                      <CFormInput aria-label="Text input with segmented dropdown button" />
+                      <CDropdown alignment="end" variant="input-group">
+                        <CButton type="button" color="secondary" variant="outline">
+                          서 버
+                        </CButton>
+                        <CDropdownToggle color="secondary" variant="outline" split />
+                        <CDropdownMenu>
+                          <CDropdownItem href="#">Action</CDropdownItem>
+                          <CDropdownItem href="#">Another action</CDropdownItem>
+                          <CDropdownItem href="#">Something else here</CDropdownItem>
+                          <CDropdownDivider />
+                          <CDropdownItem href="#">Separated link</CDropdownItem>
+                        </CDropdownMenu>
+                      </CDropdown>
+                    </CInputGroup>
+                  </CCol>
+                  <CCol sm={1}>
+                    <CButton component="a" color="info" variant="outline" href="#" role="button">
+                      조 회
+                    </CButton>
+                  </CCol>
+                </CRow>
+              </CCardBody>
+            </CCard>
+            <DocsExample1 href="components/table#table-head">
+              <CRow className="justify-content-between">
+                <CCol xs={{ span: 2, offset: 0 }}>
+                  <CDropdown>
+                    <CDropdownToggle color="white">타입</CDropdownToggle>
+                    <CDropdownMenu>
+                      <CDropdownItem href="#">HostCLientAPP</CDropdownItem>
+                      <CDropdownItem href="#">media_manager</CDropdownItem>
+                      <CDropdownItem href="#">scenarion_manager</CDropdownItem>
+                    </CDropdownMenu>
+                  </CDropdown>
+                </CCol>
+                <CCol xs={{ span: 7, offset: 0 }}>
+                  <CFormCheck inline id="inlineCheckbox1" value="option1" label="상태" />
+                  <CFormCheck inline id="inlineCheckbox2" value="option2" label="해제" />
+                  <CFormCheck inline id="inlineCheckbox1" value="option1" label="전체" />
+                  <CFormCheck inline id="inlineCheckbox2" value="option2" label="시작" />
+                  <CFormCheck inline id="inlineCheckbox1" value="option1" label="정지" />
+                  <CFormCheck inline id="inlineCheckbox2" value="option2" label="알수없음" />
+                </CCol>
+                <CCol xs={{ span: 3, offset: 0 }}>
+                  <CButtonGroup role="group" aria-label="Basic outlined example">
+                    <CButton color="info" variant="outline">
+                      시 작
+                    </CButton>
+                    <CButton color="info" variant="outline">
+                      종 료
+                    </CButton>
+                    <CButton color="info" variant="outline">
+                      강제로 종료
+                    </CButton>
+                  </CButtonGroup>
+                </CCol>
+              </CRow>
+              <br></br>
               <CTable>
                 <CTableHead color="dark">
                   <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">
+                      <CFormCheck id="flexCheckChecked" label=" " defaultChecked />
+                    </CTableHeaderCell>
+                    <CTableHeaderCell scope="col">센터</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">시스템</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">시스템명</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">시스템IP</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">프로세스</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">프로세스명</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">프로세스타입</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">프로세스상태</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">서비스상태</CTableHeaderCell>
+                    <CTableHeaderCell scope="col">Agent상태</CTableHeaderCell>
                   </CTableRow>
                 </CTableHead>
                 <CTableBody>
                   <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
+                    <CTableHeaderCell scope="row">
+                      <CFormCheck id="flexCheckDefault" label=" " />
+                    </CTableHeaderCell>
+                    <CTableDataCell>서울</CTableDataCell>
+                    <CTableDataCell>00101001</CTableDataCell>
+                    <CTableDataCell>서울IVR#1</CTableDataCell>
+                    <CTableDataCell>10.121.104.51</CTableDataCell>
+                    <CTableDataCell>HO_01</CTableDataCell>
+                    <CTableDataCell>HostClientApp</CTableDataCell>
+                    <CTableDataCell>ETC</CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <p></p>
+                      {/* <CBadge color="info">시작</CBadge> */}
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
                   </CTableRow>
                   <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
+                    <CTableHeaderCell scope="row">
+                      <CFormCheck id="flexCheckDefault" label=" " />
+                    </CTableHeaderCell>
+                    <CTableDataCell>서울</CTableDataCell>
+                    <CTableDataCell>00101001</CTableDataCell>
+                    <CTableDataCell>서울IVR#1</CTableDataCell>
+                    <CTableDataCell>10.121.104.51</CTableDataCell>
+                    <CTableDataCell>MM_01</CTableDataCell>
+                    <CTableDataCell>media_manager</CTableDataCell>
+                    <CTableDataCell>MEDIA</CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <p></p>
+                      {/* <CBadge color="info">시작</CBadge> */}
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
                   </CTableRow>
                   <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
+                    <CTableHeaderCell scope="row">
+                      <CFormCheck id="flexCheckDefault" label=" " />
+                    </CTableHeaderCell>
+                    <CTableDataCell>서울</CTableDataCell>
+                    <CTableDataCell>00101001</CTableDataCell>
+                    <CTableDataCell>서울IVR#1</CTableDataCell>
+                    <CTableDataCell>10.121.104.51</CTableDataCell>
+                    <CTableDataCell>SM_01</CTableDataCell>
+                    <CTableDataCell>scenario_manager</CTableDataCell>
+                    <CTableDataCell>SCENARIO</CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
+                  </CTableRow>
+                  <CTableRow>
+                    <CTableHeaderCell scope="row">
+                      <CFormCheck id="flexCheckDefault" label=" " />
+                    </CTableHeaderCell>
+                    <CTableDataCell>서울</CTableDataCell>
+                    <CTableDataCell>00101001</CTableDataCell>
+                    <CTableDataCell>서울IVR#2</CTableDataCell>
+                    <CTableDataCell>10.121.104.52</CTableDataCell>
+                    <CTableDataCell>HO_01</CTableDataCell>
+                    <CTableDataCell>HostClientApp</CTableDataCell>
+                    <CTableDataCell>ETC</CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <p></p>
+                      {/* <CBadge color="info">시작</CBadge> */}
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
+                  </CTableRow>
+                  <CTableRow>
+                    <CTableHeaderCell scope="row">
+                      <CFormCheck id="flexCheckDefault" label=" " />
+                    </CTableHeaderCell>
+                    <CTableDataCell>서울</CTableDataCell>
+                    <CTableDataCell>00101001</CTableDataCell>
+                    <CTableDataCell>서울IVR#2</CTableDataCell>
+                    <CTableDataCell>10.121.104.52</CTableDataCell>
+                    <CTableDataCell>MM_01</CTableDataCell>
+                    <CTableDataCell>media_manager</CTableDataCell>
+                    <CTableDataCell>MEDIA</CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <p></p>
+                      {/* <CBadge color="info">시작</CBadge> */}
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
+                  </CTableRow>
+                  <CTableRow>
+                    <CTableHeaderCell scope="row">
+                      <CFormCheck id="flexCheckDefault" label=" " />
+                    </CTableHeaderCell>
+                    <CTableDataCell>서울</CTableDataCell>
+                    <CTableDataCell>00101001</CTableDataCell>
+                    <CTableDataCell>서울IVR#2</CTableDataCell>
+                    <CTableDataCell>10.121.104.52</CTableDataCell>
+                    <CTableDataCell>MM_02</CTableDataCell>
+                    <CTableDataCell>media_manager</CTableDataCell>
+                    <CTableDataCell>MEDIA</CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <p></p>
+                      {/* <CBadge color="info">시작</CBadge> */}
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
+                  </CTableRow>
+                  <CTableRow>
+                    <CTableHeaderCell scope="row">
+                      <CFormCheck id="flexCheckDefault" label=" " />
+                    </CTableHeaderCell>
+                    <CTableDataCell>서울</CTableDataCell>
+                    <CTableDataCell>00101001</CTableDataCell>
+                    <CTableDataCell>서울IVR#2</CTableDataCell>
+                    <CTableDataCell>10.121.104.52</CTableDataCell>
+                    <CTableDataCell>SM_01</CTableDataCell>
+                    <CTableDataCell>scenario_manager</CTableDataCell>
+                    <CTableDataCell>SCENARIO</CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
+                  </CTableRow>
+                  <CTableRow>
+                    <CTableHeaderCell scope="row">
+                      <CFormCheck id="flexCheckDefault" label=" " />
+                    </CTableHeaderCell>
+                    <CTableDataCell>서울</CTableDataCell>
+                    <CTableDataCell>00101001</CTableDataCell>
+                    <CTableDataCell>서울IVR#2</CTableDataCell>
+                    <CTableDataCell>10.121.104.52</CTableDataCell>
+                    <CTableDataCell>SM_02</CTableDataCell>
+                    <CTableDataCell>scenario_manager</CTableDataCell>
+                    <CTableDataCell>SCENARIO</CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
+                    <CTableDataCell>
+                      <CBadge color="info">시작</CBadge>
+                    </CTableDataCell>
                   </CTableRow>
                 </CTableBody>
               </CTable>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Table</strong> <small>Table foot</small>
-          </CCardHeader>
-          <CCardBody>
-            <DocsExample href="components/table#table-foot">
-              <CTable>
-                <CTableHead color="light">
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell colSpan="2">Larry the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableDataCell>Footer</CTableDataCell>
-                    <CTableDataCell>Footer</CTableDataCell>
-                    <CTableDataCell>Footer</CTableDataCell>
-                    <CTableDataCell>Footer</CTableDataCell>
-                  </CTableRow>
-                </CTableHead>
-              </CTable>
-            </DocsExample>
-          </CCardBody>
-        </CCard>
-      </CCol>
-      <CCol xs={12}>
-        <CCard className="mb-4">
-          <CCardHeader>
-            <strong>React Table</strong> <small>Captions</small>
-          </CCardHeader>
-          <CCardBody>
-            <p className="text-medium-emphasis small">
-              A <code>&lt;CTableCaption&gt;</code> functions like a heading for a table. It helps
-              users with screen readers to find a table and understand what it&#39;s about and
-              decide if they want to read it.
-            </p>
-            <DocsExample href="components/table#captions">
-              <CTable>
-                <CTableCaption>List of users</CTableCaption>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell>Larry</CTableDataCell>
-                    <CTableDataCell>the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
-            <p className="text-medium-emphasis small">
-              You can also put the <code>&lt;CTableCaption&gt;</code> on the top of the table with{' '}
-              <code>caption=&#34;top&#34;</code>.
-            </p>
-            <DocsExample href="components/table#captions">
-              <CTable caption="top">
-                <CTableCaption>List of users</CTableCaption>
-                <CTableHead>
-                  <CTableRow>
-                    <CTableHeaderCell scope="col">#</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Class</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                    <CTableHeaderCell scope="col">Heading</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">1</CTableHeaderCell>
-                    <CTableDataCell>Mark</CTableDataCell>
-                    <CTableDataCell>Otto</CTableDataCell>
-                    <CTableDataCell>@mdo</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">2</CTableHeaderCell>
-                    <CTableDataCell>Jacob</CTableDataCell>
-                    <CTableDataCell>Thornton</CTableDataCell>
-                    <CTableDataCell>@fat</CTableDataCell>
-                  </CTableRow>
-                  <CTableRow>
-                    <CTableHeaderCell scope="row">3</CTableHeaderCell>
-                    <CTableDataCell>Larry</CTableDataCell>
-                    <CTableDataCell>the Bird</CTableDataCell>
-                    <CTableDataCell>@twitter</CTableDataCell>
-                  </CTableRow>
-                </CTableBody>
-              </CTable>
-            </DocsExample>
+            </DocsExample1>
           </CCardBody>
         </CCard>
       </CCol>

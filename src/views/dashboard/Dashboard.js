@@ -18,7 +18,14 @@ import {
   CTableHeaderCell,
   CTableRow,
 } from '@coreui/react'
-import { CChartLine } from '@coreui/react-chartjs'
+import {
+  CChartBar,
+  CChartDoughnut,
+  CChartLine,
+  CChartPie,
+  CChartPolarArea,
+  CChartRadar,
+} from '@coreui/react-chartjs'
 import { getStyle, hexToRgba } from '@coreui/utils'
 import CIcon from '@coreui/icons-react'
 import {
@@ -28,18 +35,22 @@ import {
   cibCcPaypal,
   cibCcStripe,
   cibCcVisa,
+  cilApps,
   cibGoogle,
   cibFacebook,
+  cibTwitter,
   cibLinkedin,
+  cilPhone,
   cifBr,
   cifEs,
   cifFr,
   cifIn,
   cifPl,
   cifUs,
-  cibTwitter,
+  cilReload,
   cilCloudDownload,
   cilPeople,
+  cilAppsSettings,
   cilUser,
   cilUserFemale,
 } from '@coreui/icons'
@@ -58,11 +69,10 @@ const Dashboard = () => {
   const random = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
 
   const progressExample = [
-    { title: 'Visits', value: '29.703 Users', percent: 40, color: 'success' },
-    { title: 'Unique', value: '24.093 Users', percent: 20, color: 'info' },
-    { title: 'Pageviews', value: '78.706 Views', percent: 60, color: 'warning' },
-    { title: 'New Users', value: '22.123 Users', percent: 80, color: 'danger' },
-    { title: 'Bounce Rate', value: 'Average Rate', percent: 40.15, color: 'primary' },
+    { title: '점유 채널', value: '93.70 개', percent: 60, color: 'danger' },
+    { title: '유휴 채널', value: '23.093 개', percent: 14, color: 'info' },
+    { title: '신규 가입', value: '78.706 명', percent: 27, color: 'warning' },
+    { title: '이슈 발생', value: '0 건', percent: 0, color: 'success' },
   ]
 
   const progressGroupExample1 = [
@@ -76,117 +86,177 @@ const Dashboard = () => {
   ]
 
   const progressGroupExample2 = [
+    { title: 'S-CJO-IVR01', icon: cilApps, value: 95 },
+    { title: '테스트', icon: cilAppsSettings, value: 0 },
+  ]
+
+  const progressGroupExample2_1 = [
     { title: 'Male', icon: cilUser, value: 53 },
-    { title: 'Female', icon: cilUserFemale, value: 43 },
+    { title: 'Female', icon: cilUserFemale, value: 47 },
   ]
 
   const progressGroupExample3 = [
+    { title: '상품 문의', icon: cilPhone, percent: 70, value: '126/180' },
+    { title: '고객 상담', icon: cilPeople, percent: 15, value: '27/180' },
+    { title: 'A/S 접수', icon: cilReload, percent: 15, value: '27/180' },
+    { title: '테스트', icon: cilAppsSettings, percent: 0, value: '0/30' },
+  ]
+  const progressGroupExample3_1 = [
     { title: 'Organic Search', icon: cibGoogle, percent: 56, value: '191,235' },
     { title: 'Facebook', icon: cibFacebook, percent: 15, value: '51,223' },
     { title: 'Twitter', icon: cibTwitter, percent: 11, value: '37,564' },
     { title: 'LinkedIn', icon: cibLinkedin, percent: 8, value: '27,319' },
   ]
 
-  const tableExample = [
-    {
-      avatar: { src: avatar1, status: 'success' },
-      user: {
-        name: 'Yiorgos Avraamu',
-        new: true,
-        registered: 'Jan 1, 2021',
-      },
-      country: { name: 'USA', flag: cifUs },
-      usage: {
-        value: 50,
-        period: 'Jun 11, 2021 - Jul 10, 2021',
-        color: 'success',
-      },
-      payment: { name: 'Mastercard', icon: cibCcMastercard },
-      activity: '10 sec ago',
-    },
-    {
-      avatar: { src: avatar2, status: 'danger' },
-      user: {
-        name: 'Avram Tarasios',
-        new: false,
-        registered: 'Jan 1, 2021',
-      },
-      country: { name: 'Brazil', flag: cifBr },
-      usage: {
-        value: 22,
-        period: 'Jun 11, 2021 - Jul 10, 2021',
-        color: 'info',
-      },
-      payment: { name: 'Visa', icon: cibCcVisa },
-      activity: '5 minutes ago',
-    },
-    {
-      avatar: { src: avatar3, status: 'warning' },
-      user: { name: 'Quintin Ed', new: true, registered: 'Jan 1, 2021' },
-      country: { name: 'India', flag: cifIn },
-      usage: {
-        value: 74,
-        period: 'Jun 11, 2021 - Jul 10, 2021',
-        color: 'warning',
-      },
-      payment: { name: 'Stripe', icon: cibCcStripe },
-      activity: '1 hour ago',
-    },
-    {
-      avatar: { src: avatar4, status: 'secondary' },
-      user: { name: 'Enéas Kwadwo', new: true, registered: 'Jan 1, 2021' },
-      country: { name: 'France', flag: cifFr },
-      usage: {
-        value: 98,
-        period: 'Jun 11, 2021 - Jul 10, 2021',
-        color: 'danger',
-      },
-      payment: { name: 'PayPal', icon: cibCcPaypal },
-      activity: 'Last month',
-    },
-    {
-      avatar: { src: avatar5, status: 'success' },
-      user: {
-        name: 'Agapetus Tadeáš',
-        new: true,
-        registered: 'Jan 1, 2021',
-      },
-      country: { name: 'Spain', flag: cifEs },
-      usage: {
-        value: 22,
-        period: 'Jun 11, 2021 - Jul 10, 2021',
-        color: 'primary',
-      },
-      payment: { name: 'Google Wallet', icon: cibCcApplePay },
-      activity: 'Last week',
-    },
-    {
-      avatar: { src: avatar6, status: 'danger' },
-      user: {
-        name: 'Friderik Dávid',
-        new: true,
-        registered: 'Jan 1, 2021',
-      },
-      country: { name: 'Poland', flag: cifPl },
-      usage: {
-        value: 43,
-        period: 'Jun 11, 2021 - Jul 10, 2021',
-        color: 'success',
-      },
-      payment: { name: 'Amex', icon: cibCcAmex },
-      activity: 'Last week',
-    },
-  ]
-
   return (
     <>
-      <WidgetsDropdown />
+      <CCard className="mb-4">
+        <CCardBody>
+          <CRow>
+            <CCol xs={12} md={6} xl={6}>
+              <CRow>
+                <CCol sm={6}>
+                  <div className="text-medium-emphasis small">콜수</div>
+                  <div className="fs-1 fw-semibold text-info">0</div>
+                </CCol>
+                <CCol sm={6}>
+                  <div className="border-start border-start-1 border-start-dark py-1 px-3">
+                    <div className="text-medium-emphasis small">평균 통화시간</div>
+                    <div className="fs-1 fw-semibold text-dark">00:00:00</div>
+                  </div>
+                </CCol>
+              </CRow>
+              {/* <hr className="mt-0" /> */}
+            </CCol>
+            <CCol xs={12} md={6} xl={6}>
+              <CRow>
+                <CCol sm={6}>
+                  <div className="border-start border-start-1 border-start-dark py-1 px-3 mb-3">
+                    <div className="text-medium-emphasis small">최대 채널점유수</div>
+                    <div className="fs-1 fw-semibold text-success">0</div>
+                  </div>
+                </CCol>
+                <CCol sm={6}>
+                  <div className="border-start border-start-1 border-start-dark py-1 px-3 mb-3">
+                    <div className="text-medium-emphasis small">평균 채널점유수</div>
+                    <div className="fs-1 fw-semibold text-dark">0</div>
+                  </div>
+                </CCol>
+              </CRow>
+              {/* <hr className="mt-0" /> */}
+            </CCol>
+          </CRow>
+        </CCardBody>
+      </CCard>
+      <CRow>
+        <CCol xs>
+          <CCard className="mb-4">
+            <CCardHeader>채널 현황</CCardHeader>
+            <CCardBody>
+              <CRow>
+                <CCol xs={12} md={6} xl={6}>
+                  <CRow>
+                    <CCol sm={4}>
+                      <div className="py-1 px-3 mb-3">
+                        <div className="text-medium-emphasis small">전체 채널수</div>
+                        <div className="fs-5 fw-semibold">210</div>
+                      </div>
+                    </CCol>
+                    <CCol sm={4}>
+                      <div className="border-start border-start-4 border-start-danger py-1 px-3 mb-3">
+                        <div className="text-medium-emphasis small">점유 채널수</div>
+                        <div className="fs-5 fw-semibold">171</div>
+                      </div>
+                    </CCol>
+                    <CCol sm={4}>
+                      <div className="border-start border-start-4 border-start-info py-1 px-3 mb-3">
+                        <div className="text-medium-emphasis small">유휴 채널수</div>
+                        <div className="fs-5 fw-semibold">39</div>
+                      </div>
+                    </CCol>
+                  </CRow>
+
+                  <hr className="mt-0" />
+                  <div className="position-relative w-75 h-75 d-inline-block">
+                    <div className="position-absolute top-50 start-50 translate-middle">
+                      <p className="fs-6 text-dark mt-3 mb-0">점유율</p>
+                      <p className="fs-3 text-center text-danger fw-bolder m-0">81%</p>
+                    </div>
+                    <CChartDoughnut
+                      data={{
+                        labels: ['점유', '유휴'],
+                        datasets: [
+                          {
+                            backgroundColor: ['#DD1B16', '#39f'],
+                            data: [81, 19],
+                            borderWidth: 1,
+                          },
+                        ],
+                      }}
+                    />
+                  </div>
+                </CCol>
+
+                <CCol xs={12} md={6} xl={6}>
+                  <CRow>
+                    <CCol sm={6}>
+                      <div className="border-start border-start-4 border-start-warning py-1 px-3 mb-3">
+                        <div className="text-medium-emphasis small">점유율 상위 시스템</div>
+                        <div className="fs-5 fw-semibold">S-CJO-IVR01</div>
+                      </div>
+                    </CCol>
+                    <CCol sm={6}>
+                      <div className="border-start border-start-4 border-start-success py-1 px-3 mb-3">
+                        <div className="text-medium-emphasis small">점유율 상위 업무</div>
+                        <div className="fs-5 fw-semibold">일반</div>
+                      </div>
+                    </CCol>
+                  </CRow>
+
+                  <hr className="mt-0" />
+
+                  {progressGroupExample2.map((item, index) => (
+                    <div className="progress-group mb-4" key={index}>
+                      <div className="progress-group-header">
+                        <CIcon className="me-2" icon={item.icon} size="lg" />
+                        <span>{item.title}</span>
+                        <span className="ms-auto fw-semibold">{item.value}%</span>
+                      </div>
+                      <div className="progress-group-bars">
+                        <CProgress thin color="warning" value={item.value} />
+                      </div>
+                    </div>
+                  ))}
+
+                  <div className="mb-5"></div>
+
+                  {progressGroupExample3.map((item, index) => (
+                    <div className="progress-group" key={index}>
+                      <div className="progress-group-header">
+                        <CIcon className="me-2" icon={item.icon} size="lg" />
+                        <span>{item.title}</span>
+                        <span className="ms-auto fw-semibold">
+                          {item.value}{' '}
+                          <span className="text-medium-emphasis small">({item.percent}%)</span>
+                        </span>
+                      </div>
+                      <div className="progress-group-bars">
+                        <CProgress thin color="success" value={item.percent} />
+                      </div>
+                    </div>
+                  ))}
+                </CCol>
+              </CRow>
+            </CCardBody>
+          </CCard>
+        </CCol>
+      </CRow>
       <CCard className="mb-4">
         <CCardBody>
           <CRow>
             <CCol sm={5}>
               <h4 id="traffic" className="card-title mb-0">
-                Traffic
+                상반기 채널 점유율 추이
               </h4>
               <div className="small text-medium-emphasis">January - July 2021</div>
             </CCol>
@@ -195,12 +265,12 @@ const Dashboard = () => {
                 <CIcon icon={cilCloudDownload} />
               </CButton>
               <CButtonGroup className="float-end me-3">
-                {['Day', 'Month', 'Year'].map((value) => (
+                {['일별', '월별', '년별'].map((value) => (
                   <CButton
                     color="outline-secondary"
                     key={value}
                     className="mx-0"
-                    active={value === 'Month'}
+                    active={value === '월별'}
                   >
                     {value}
                   </CButton>
@@ -211,49 +281,47 @@ const Dashboard = () => {
           <CChartLine
             style={{ height: '300px', marginTop: '40px' }}
             data={{
-              labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+              labels: ['1월', '2월', '3월', '4월', '5월', '6월'],
               datasets: [
                 {
-                  label: 'My First dataset',
-                  backgroundColor: hexToRgba(getStyle('--cui-info'), 10),
-                  borderColor: getStyle('--cui-info'),
-                  pointHoverBackgroundColor: getStyle('--cui-info'),
+                  label: '점유 채널',
+                  backgroundColor: hexToRgba(getStyle('--cui-danger'), 10),
+                  borderColor: getStyle('--cui-danger'),
+                  pointHoverBackgroundColor: getStyle('--cui-danger'),
                   borderWidth: 2,
                   data: [
-                    random(50, 200),
-                    random(50, 200),
-                    random(50, 200),
-                    random(50, 200),
-                    random(50, 200),
-                    random(50, 200),
-                    random(50, 200),
+                    random(90, 200),
+                    random(30, 200),
+                    random(100, 200),
+                    random(80, 200),
+                    random(120, 200),
+                    random(140, 200),
                   ],
                   fill: true,
                 },
                 {
-                  label: 'My Second dataset',
+                  label: '유휴 채널',
                   backgroundColor: 'transparent',
-                  borderColor: getStyle('--cui-success'),
-                  pointHoverBackgroundColor: getStyle('--cui-success'),
+                  borderColor: getStyle('--cui-info'),
+                  pointHoverBackgroundColor: getStyle('--cui-info'),
                   borderWidth: 2,
                   data: [
-                    random(50, 200),
-                    random(50, 200),
-                    random(50, 200),
-                    random(50, 200),
-                    random(50, 200),
-                    random(50, 200),
-                    random(50, 200),
+                    random(0, 50),
+                    random(0, 30),
+                    random(0, 100),
+                    random(0, 80),
+                    random(0, 50),
+                    random(0, 50),
                   ],
                 },
                 {
-                  label: 'My Third dataset',
+                  label: '신규 가입 통화',
                   backgroundColor: 'transparent',
                   borderColor: getStyle('--cui-danger'),
                   pointHoverBackgroundColor: getStyle('--cui-danger'),
                   borderWidth: 1,
                   borderDash: [8, 5],
-                  data: [65, 65, 65, 65, 65, 65, 65],
+                  data: [30, 45, 100, 105, 60, 55],
                 },
               ],
             }}
@@ -294,7 +362,7 @@ const Dashboard = () => {
           />
         </CCardBody>
         <CCardFooter>
-          <CRow xs={{ cols: 1 }} md={{ cols: 5 }} className="text-center">
+          <CRow xs={{ cols: 1 }} md={{ cols: 4 }} className="text-center">
             {progressExample.map((item, index) => (
               <CCol className="mb-sm-2 mb-0" key={index}>
                 <div className="text-medium-emphasis">{item.title}</div>
@@ -307,27 +375,24 @@ const Dashboard = () => {
           </CRow>
         </CCardFooter>
       </CCard>
-
-      <WidgetsBrand withCharts />
-
       <CRow>
         <CCol xs>
           <CCard className="mb-4">
-            <CCardHeader>Traffic {' & '} Sales</CCardHeader>
+            <CCardHeader>채널 현황</CCardHeader>
             <CCardBody>
               <CRow>
                 <CCol xs={12} md={6} xl={6}>
                   <CRow>
                     <CCol sm={6}>
-                      <div className="border-start border-start-4 border-start-info py-1 px-3">
-                        <div className="text-medium-emphasis small">New Clients</div>
-                        <div className="fs-5 fw-semibold">9,123</div>
+                      <div className="border-start border-start-4 border-start-danger py-1 px-3 mb-3">
+                        <div className="text-medium-emphasis small">작주 최대 점유 채널수</div>
+                        <div className="fs-5 fw-semibold">171</div>
                       </div>
                     </CCol>
                     <CCol sm={6}>
-                      <div className="border-start border-start-4 border-start-danger py-1 px-3 mb-3">
-                        <div className="text-medium-emphasis small">Recurring Clients</div>
-                        <div className="fs-5 fw-semibold">22,643</div>
+                      <div className="border-start border-start-4 border-start-info py-1 px-3">
+                        <div className="text-medium-emphasis small">작주 최대 유휴 채널수</div>
+                        <div className="fs-5 fw-semibold">39</div>
                       </div>
                     </CCol>
                   </CRow>
@@ -339,8 +404,8 @@ const Dashboard = () => {
                         <span className="text-medium-emphasis small">{item.title}</span>
                       </div>
                       <div className="progress-group-bars">
-                        <CProgress thin color="info" value={item.value1} />
                         <CProgress thin color="danger" value={item.value2} />
+                        <CProgress thin color="info" value={item.value1} />
                       </div>
                     </div>
                   ))}
@@ -350,21 +415,21 @@ const Dashboard = () => {
                   <CRow>
                     <CCol sm={6}>
                       <div className="border-start border-start-4 border-start-warning py-1 px-3 mb-3">
-                        <div className="text-medium-emphasis small">Pageviews</div>
-                        <div className="fs-5 fw-semibold">78,623</div>
+                        <div className="text-medium-emphasis small">고객수</div>
+                        <div className="fs-5 fw-semibold">1,623</div>
                       </div>
                     </CCol>
                     <CCol sm={6}>
                       <div className="border-start border-start-4 border-start-success py-1 px-3 mb-3">
-                        <div className="text-medium-emphasis small">Organic</div>
-                        <div className="fs-5 fw-semibold">49,123</div>
+                        <div className="text-medium-emphasis small">외부 접근 채널</div>
+                        <div className="fs-5 fw-semibold">191,235</div>
                       </div>
                     </CCol>
                   </CRow>
 
                   <hr className="mt-0" />
 
-                  {progressGroupExample2.map((item, index) => (
+                  {progressGroupExample2_1.map((item, index) => (
                     <div className="progress-group mb-4" key={index}>
                       <div className="progress-group-header">
                         <CIcon className="me-2" icon={item.icon} size="lg" />
@@ -379,7 +444,7 @@ const Dashboard = () => {
 
                   <div className="mb-5"></div>
 
-                  {progressGroupExample3.map((item, index) => (
+                  {progressGroupExample3_1.map((item, index) => (
                     <div className="progress-group" key={index}>
                       <div className="progress-group-header">
                         <CIcon className="me-2" icon={item.icon} size="lg" />
@@ -396,64 +461,12 @@ const Dashboard = () => {
                   ))}
                 </CCol>
               </CRow>
-
-              <br />
-
-              <CTable align="middle" className="mb-0 border" hover responsive>
-                <CTableHead color="light">
-                  <CTableRow>
-                    <CTableHeaderCell className="text-center">
-                      <CIcon icon={cilPeople} />
-                    </CTableHeaderCell>
-                    <CTableHeaderCell>User</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Country</CTableHeaderCell>
-                    <CTableHeaderCell>Usage</CTableHeaderCell>
-                    <CTableHeaderCell className="text-center">Payment Method</CTableHeaderCell>
-                    <CTableHeaderCell>Activity</CTableHeaderCell>
-                  </CTableRow>
-                </CTableHead>
-                <CTableBody>
-                  {tableExample.map((item, index) => (
-                    <CTableRow v-for="item in tableItems" key={index}>
-                      <CTableDataCell className="text-center">
-                        <CAvatar size="md" src={item.avatar.src} status={item.avatar.status} />
-                      </CTableDataCell>
-                      <CTableDataCell>
-                        <div>{item.user.name}</div>
-                        <div className="small text-medium-emphasis">
-                          <span>{item.user.new ? 'New' : 'Recurring'}</span> | Registered:{' '}
-                          {item.user.registered}
-                        </div>
-                      </CTableDataCell>
-                      <CTableDataCell className="text-center">
-                        <CIcon size="xl" icon={item.country.flag} title={item.country.name} />
-                      </CTableDataCell>
-                      <CTableDataCell>
-                        <div className="clearfix">
-                          <div className="float-start">
-                            <strong>{item.usage.value}%</strong>
-                          </div>
-                          <div className="float-end">
-                            <small className="text-medium-emphasis">{item.usage.period}</small>
-                          </div>
-                        </div>
-                        <CProgress thin color={item.usage.color} value={item.usage.value} />
-                      </CTableDataCell>
-                      <CTableDataCell className="text-center">
-                        <CIcon size="xl" icon={item.payment.icon} />
-                      </CTableDataCell>
-                      <CTableDataCell>
-                        <div className="small text-medium-emphasis">Last login</div>
-                        <strong>{item.activity}</strong>
-                      </CTableDataCell>
-                    </CTableRow>
-                  ))}
-                </CTableBody>
-              </CTable>
             </CCardBody>
           </CCard>
         </CCol>
       </CRow>
+      {/* <WidgetsDropdown /> */}
+      {/* <WidgetsBrand withCharts /> */}
     </>
   )
 }

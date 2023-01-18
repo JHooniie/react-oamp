@@ -1,17 +1,17 @@
 import React from 'react'
 import CIcon from '@coreui/icons-react'
 import {
-  cilBell,
   cilCalculator,
   cilChartPie,
-  cilCursor,
+  cilSettings,
   cilDescription,
-  cilDrop,
   cilNotes,
-  cilPencil,
   cilPuzzle,
   cilSpeedometer,
   cilStar,
+  cilMonitor,
+  cilFolderOpen,
+  cilFile,
 } from '@coreui/icons'
 import { CNavGroup, CNavItem, CNavTitle } from '@coreui/react'
 
@@ -26,188 +26,154 @@ const _nav = [
       text: 'NEW',
     },
   },
-  {
-    component: CNavTitle,
-    name: 'Theme',
-  },
-  {
-    component: CNavItem,
-    name: 'Colors',
-    to: '/theme/colors',
-    icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
-  },
-  {
-    component: CNavItem,
-    name: 'Typography',
-    to: '/theme/typography',
-    icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
-  },
+  // {
+  //   component: CNavTitle,
+  //   name: 'Theme',
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'Colors',
+  //   to: '/theme/colors',
+  //   icon: <CIcon icon={cilDrop} customClassName="nav-icon" />,
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'Typography',
+  //   to: '/theme/typography',
+  //   icon: <CIcon icon={cilPencil} customClassName="nav-icon" />,
+  // },
   {
     component: CNavTitle,
     name: 'Components',
   },
   {
     component: CNavGroup,
-    name: '으아아',
+    name: '보고서',
     to: '/base',
-    icon: <CIcon icon={cilPuzzle} customClassName="nav-icon" />,
+    icon: <CIcon icon={cilFile} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'Accordion',
+        name: '콜 보고서',
         to: '/base/accordion',
       },
       {
         component: CNavItem,
-        name: 'Breadcrumb',
+        name: '서비스 메뉴 보고서',
         to: '/base/breadcrumbs',
       },
       {
         component: CNavItem,
-        name: 'Cards',
+        name: '채널 점유율 보고서',
         to: '/base/cards',
       },
       {
         component: CNavItem,
-        name: 'Carousel',
+        name: '자원사용 보고서',
         to: '/base/carousels',
-      },
-      {
-        component: CNavItem,
-        name: 'Collapse',
-        to: '/base/collapses',
-      },
-      {
-        component: CNavItem,
-        name: 'List group',
-        to: '/base/list-groups',
-      },
-      {
-        component: CNavItem,
-        name: 'Navs & Tabs',
-        to: '/base/navs',
-      },
-      {
-        component: CNavItem,
-        name: 'Pagination',
-        to: '/base/paginations',
-      },
-      {
-        component: CNavItem,
-        name: 'Placeholders',
-        to: '/base/placeholders',
-      },
-      {
-        component: CNavItem,
-        name: 'Popovers',
-        to: '/base/popovers',
-      },
-      {
-        component: CNavItem,
-        name: 'Progress',
-        to: '/base/progress',
-      },
-      {
-        component: CNavItem,
-        name: 'Spinners',
-        to: '/base/spinners',
-      },
-      {
-        component: CNavItem,
-        name: 'Tables',
-        to: '/base/tables',
-      },
-      {
-        component: CNavItem,
-        name: 'Tooltips',
-        to: '/base/tooltips',
       },
     ],
   },
   {
     component: CNavGroup,
-    name: '드디어',
-    to: '/buttons',
-    icon: <CIcon icon={cilCursor} customClassName="nav-icon" />,
+    name: '모니터링',
+    icon: <CIcon icon={cilMonitor} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'Buttons',
-        to: '/buttons/buttons',
+        name: '자원사용 모니터링',
+        to: '/notifications/alerts',
       },
       {
         component: CNavItem,
-        name: 'Buttons groups',
-        to: '/buttons/button-groups',
+        name: '채널 모니터링',
+        to: '/notifications/badges',
       },
       {
         component: CNavItem,
-        name: 'Dropdowns',
-        to: '/buttons/dropdowns',
+        name: '프로세스 모니터링',
+        to: '/notifications/modals',
+      },
+      {
+        component: CNavItem,
+        name: '이벤트 모니터링',
+        to: '/notifications/toasts',
       },
     ],
   },
   {
     component: CNavGroup,
-    name: '해났다아',
+    name: '관리',
     icon: <CIcon icon={cilNotes} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'Form Control',
+        name: '사용자 관리',
         to: '/forms/form-control',
       },
       {
         component: CNavItem,
-        name: 'Select',
+        name: '코드 관리',
         to: '/forms/select',
       },
       {
         component: CNavItem,
-        name: 'Checks & Radios',
+        name: '시스템 및 프로세스 관리',
         to: '/forms/checks-radios',
       },
       {
         component: CNavItem,
-        name: 'Range',
+        name: '공휴일 관리',
         to: '/forms/range',
       },
       {
         component: CNavItem,
-        name: 'Input Group',
+        name: '서비스코드 관리',
         to: '/forms/input-group',
       },
       {
         component: CNavItem,
-        name: 'Floating Labels',
+        name: '멘트파일 관리',
         to: '/forms/floating-labels',
       },
       {
         component: CNavItem,
-        name: 'Layout',
+        name: '로그뷰어',
         to: '/forms/layout',
       },
       {
         component: CNavItem,
-        name: 'Validation',
+        name: '다중파일전송',
         to: '/forms/validation',
       },
     ],
   },
   {
-    component: CNavItem,
-    name: 'Charts',
-    to: '/charts',
-    icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
-  },
-  {
     component: CNavGroup,
-    name: 'Icons',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+    name: '제어',
+    to: '/buttons',
+    icon: <CIcon icon={cilSettings} customClassName="nav-icon" />,
     items: [
       {
         component: CNavItem,
-        name: 'CoreUI Free',
+        name: '프로세스제어',
+        to: '/base/tables',
+      },
+      {
+        component: CNavItem,
+        name: '시나리오 배포 적용',
+        to: '/buttons/buttons',
+      },
+    ],
+  },
+  {
+    component: CNavGroup,
+    name: '한솔인티큐브',
+    icon: <CIcon icon={cilFolderOpen} customClassName="nav-icon" />,
+    items: [
+      {
+        component: CNavItem,
+        name: '공지사항',
         to: '/icons/coreui-icons',
         badge: {
           color: 'success',
@@ -216,90 +182,124 @@ const _nav = [
       },
       {
         component: CNavItem,
-        name: 'CoreUI Flags',
+        name: '버전 업데이트',
         to: '/icons/flags',
       },
       {
         component: CNavItem,
-        name: 'CoreUI Brands',
+        name: '사용 메뉴얼',
         to: '/icons/brands',
       },
     ],
   },
-  {
-    component: CNavGroup,
-    name: 'Notifications',
-    icon: <CIcon icon={cilBell} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Alerts',
-        to: '/notifications/alerts',
-      },
-      {
-        component: CNavItem,
-        name: 'Badges',
-        to: '/notifications/badges',
-      },
-      {
-        component: CNavItem,
-        name: 'Modal',
-        to: '/notifications/modals',
-      },
-      {
-        component: CNavItem,
-        name: 'Toasts',
-        to: '/notifications/toasts',
-      },
-    ],
-  },
-  {
-    component: CNavItem,
-    name: 'Widgets',
-    to: '/widgets',
-    icon: <CIcon icon={cilCalculator} customClassName="nav-icon" />,
-    badge: {
-      color: 'info',
-      text: 'NEW',
-    },
-  },
-  {
-    component: CNavTitle,
-    name: 'Extras',
-  },
-  {
-    component: CNavGroup,
-    name: 'Pages',
-    icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
-    items: [
-      {
-        component: CNavItem,
-        name: 'Login',
-        to: '/login',
-      },
-      {
-        component: CNavItem,
-        name: 'Register',
-        to: '/register',
-      },
-      {
-        component: CNavItem,
-        name: 'Error 404',
-        to: '/404',
-      },
-      {
-        component: CNavItem,
-        name: 'Error 500',
-        to: '/500',
-      },
-    ],
-  },
-  {
-    component: CNavItem,
-    name: 'Docs',
-    href: 'https://coreui.io/react/docs/templates/installation/',
-    icon: <CIcon icon={cilDescription} customClassName="nav-icon" />,
-  },
+  // {
+  //   component: CNavItem,
+  //   name: 'Charts',
+  //   to: '/charts',
+  //   icon: <CIcon icon={cilChartPie} customClassName="nav-icon" />,
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'Widgets',
+  //   to: '/widgets',
+  //   icon: <CIcon icon={cilCalculator} customClassName="nav-icon" />,
+  //   badge: {
+  //     color: 'info',
+  //     text: 'NEW',
+  //   },
+  // },
+  // {
+  //   component: CNavTitle,
+  //   name: 'Extras',
+  // },
+  // {
+  //   component: CNavGroup,
+  //   name: 'Pages',
+  //   icon: <CIcon icon={cilStar} customClassName="nav-icon" />,
+  //   items: [
+  //     {
+  //       component: CNavItem,
+  //       name: 'Login',
+  //       to: '/login',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Register',
+  //       to: '/register',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Error 404',
+  //       to: '/404',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Error 500',
+  //       to: '/500',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Collapse',
+  //       to: '/base/collapses',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'List group',
+  //       to: '/base/list-groups',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Navs & Tabs',
+  //       to: '/base/navs',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Pagination',
+  //       to: '/base/paginations',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Placeholders',
+  //       to: '/base/placeholders',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Popovers',
+  //       to: '/base/popovers',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Progress',
+  //       to: '/base/progress',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Spinners',
+  //       to: '/base/spinners',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Tooltips',
+  //       to: '/base/tooltips',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Buttons groups',
+  //       to: '/buttons/button-groups',
+  //     },
+  //     {
+  //       component: CNavItem,
+  //       name: 'Dropdowns',
+  //       to: '/buttons/dropdowns',
+  //     },
+  //   ],
+  // },
+  // {
+  //   component: CNavItem,
+  //   name: 'Docs',
+  //   href: 'https://coreui.io/react/docs/templates/installation/',
+  //   icon: <CIcon icon={cilDescription} customClassName="nav-icon" />,
+  // },
 ]
 
 export default _nav
